@@ -21,5 +21,7 @@ Route::get('/','TaskController@home');
 Route::get('task-one','TaskController@index')->name('task.one');
 Route::get('task-one-save','TaskController@create')->name('task.one.save');
 Route::get('task-one-report','TaskController@report')->name('task.one.report');
+Route::get('trello-auth','TrelloController@index')->name('trello.auth');
+Route::post('trello-get','TrelloController@trelloAuth')->name('trello.get');
 
 
