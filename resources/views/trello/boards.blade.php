@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div>
-    <a href="{{ route('create.card') }}" class="btn btn-primary">Create card</a>
+    <a href="{{ route('create.board') }}" class="btn btn-primary">Create card</a>
   </div>
     <div class="row mt-3">
         @foreach ($boards as $item)
@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $item['name'] }}</h5>
                     <p class="card-text">{{ $item['desc'] }}</p>
-                    <form action="{{ route('card.delete') }}" method="POST">
+                    <form action="{{ route('board.delete') }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="key" value="{{ Session::get('trello')['key'] }}">

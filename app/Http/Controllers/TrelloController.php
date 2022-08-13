@@ -29,12 +29,12 @@ class TrelloController extends Controller
 
     }
 
-    public function createCard()
+    public function createBoard()
     {
         return view('trello.create-board');
     }
 
-    public function storeCard(Request $request)
+    public function storeBoard(Request $request)
     {
         $request->validate([
             'name'        => 'required',
@@ -52,7 +52,7 @@ class TrelloController extends Controller
         }
     }
 
-    public function cardDelete(Request $request)
+    public function deleteBoard(Request $request)
     {
         $response = Http::delete('https://api.trello.com/1/boards/'.$request->id.'?key='.$request->key.'&token='.$request->token);
         

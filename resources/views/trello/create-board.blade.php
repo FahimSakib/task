@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form method="POST" action="{{ route('card.store') }}">
+    <form method="POST" action="{{ route('board.store') }}">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
