@@ -28,6 +28,8 @@ Route::post('board-store','TrelloController@storeBoard')->name('board.store');
 Route::delete('board-delete','TrelloController@deleteBoard')->name('board.delete');
 Route::get('edit-board/{id}','TrelloController@editBoard')->name('edit.board');
 Route::put('update-board','TrelloController@updateBoard')->name('update.board');
+Route::get('view-board/{id}','TrelloController@viewBoard')->name('view.board');
+Route::get('view-card/{id}','TrelloController@viewCard')->name('view.card');
 
 
 

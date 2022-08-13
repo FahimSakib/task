@@ -12,7 +12,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $item['name'] }}</h5>
                     <p class="card-text">{{ $item['desc'] }}</p>
-                    <a href="{{ route('edit.board',$item['id']) }}" class="btn btn-primary mb-3">Update</a>
+                    <a href="{{ route('edit.board',$item['id']) }}" class="btn btn-primary mb-3">Update Board</a>
+                    <a href="{{ route('view.board',$item['id']) }}" class="btn btn-primary mb-3">View Board</a>
                     <form action="{{ route('board.delete') }}" method="POST">
                         @csrf
                         @method('DELETE')

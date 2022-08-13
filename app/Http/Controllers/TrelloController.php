@@ -78,6 +78,11 @@ class TrelloController extends Controller
 
     public function updateBoard(Request $request)
     {
+        $request->validate([
+            'name'        => 'required',
+            'description' => 'required'
+        ]);
+        
         $response = Http::put('https://api.trello.com/1/boards/'.$request->id.'?name='.$request->name.'&desc='.$request->description.'&key='.$request->key.'&token='.$request->token);
         if($response)
         {
@@ -86,6 +91,41 @@ class TrelloController extends Controller
 
             return view('trello.boards',compact('boards'));
         }
+    }
+
+    public function  viewBoard($id)
+    {
+        $key = Session::get('trello')['key'];
+        $token = Session::get('trello')['token'];
+
+        $response = Http::get('https://api.trello.com/1/boards/'.$id.'/lists?key='.$key.'&token='.$token)->collect();
+        $lists = $response->toArray();
+
+        $response = Http::get('https://api.trello.com/1/boards/'.$lists[0]['idBoard'].'?key='.$key.'&token='.$token)->collect();
+        $board = $response->toArray();
+
+        return view('trello.lists',compact('lists','board'));
+    }
+
+    public function  viewCard($id)
+    {
+        $key = Session::get('trello')['key'];
+        $token = Session::get('trello')['token'];
+
+        $response = Http::get('https://api.trello.com/1/lists/'.$id.'/cards?key='.$key.'&token='.$token)->collect();
+        $list = $response->toArray();
+
+        if ($list != null) {
+            $response = Http::get('https://api.trello.com/1/lists/'.$list[0]['idList'].'?key='.$key.'&token='.$token)->collect();
+            $lists = $response->toArray();
+            $response = Http::get('https://api.trello.com/1/boards/'.$list[0]['idBoard'].'?key='.$key.'&token='.$token)->collect();
+            $board = $response->toArray();
+        }else{
+            $lists = null;
+            $board = null;
+        }
+
+        return view('trello.view-cards',compact('list','lists','board'));
     }
 
 }
