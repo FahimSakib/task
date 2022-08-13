@@ -12,6 +12,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $item['name'] }}</h5>
                     <p class="card-text">{{ $item['desc'] }}</p>
+                    <a href="{{ route('edit.board',$item['id']) }}" class="btn btn-primary mb-3">Update</a>
                     <form action="{{ route('board.delete') }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -20,7 +21,6 @@
                         <input type="hidden" name="id" value="{{ $item['id']  }}">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
         </div>

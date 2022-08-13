@@ -65,4 +65,28 @@ class TrelloController extends Controller
         }
     }
 
+    public function editBoard($id)
+    {
+        $key = Session::get('trello')['key'];
+        $token = Session::get('trello')['token'];
+
+        $response = Http::get('https://api.trello.com/1/boards/'.$id.'?key='.$key.'&token='.$token)->collect();
+        $board = $response->toArray();
+
+        return view('trello.update-board',compact('board'));
+    }
+
+    public function updateBoard(Request $request)
+    {
+        $response = Http::put('https://api.trello.com/1/boards/'.$request->id.'?name='.$request->name.'&desc='.$request->description.'&key='.$request->key.'&token='.$request->token);
+        // dd('https://api.trello.com/1/boards/'.$request->id.'?name='.$request->name.'&desc='.$request->description.'&key='.$request->key.'&token='.$request->token);
+        if($response)
+        {
+            $response = Http::get('https://api.trello.com/1/members/me/boards?key='.$request->key.'&token='.$request->token)->collect();
+            $boards = $response->toArray();
+
+            return view('trello.boards',compact('boards'));
+        }
+    }
+
 }
