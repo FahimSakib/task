@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <div>
-    <a href="{{ route('create.board') }}" class="btn btn-primary">Create card</a>
+    <a href="{{ route('create.board') }}" class="btn btn-success">Create Board</a>
   </div>
     <div class="row mt-3">
         @foreach ($boards as $item)
@@ -13,7 +13,7 @@
                     <h5 class="card-title">{{ $item['name'] }}</h5>
                     <p class="card-text">{{ $item['desc'] }}</p>
                     <a href="{{ route('edit.board',$item['id']) }}" class="btn btn-primary mb-3">Update Board</a>
-                    <a href="{{ route('view.board',$item['id']) }}" class="btn btn-primary mb-3">View Board</a>
+                    <a href="{{ route('view.board',$item['id']) }}" class="btn btn-primary mb-3">View Board (lists)</a>
                     <form action="{{ route('board.delete') }}" method="POST">
                         @csrf
                         @method('DELETE')

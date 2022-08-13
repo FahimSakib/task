@@ -82,7 +82,7 @@ class TrelloController extends Controller
             'name'        => 'required',
             'description' => 'required'
         ]);
-        
+
         $response = Http::put('https://api.trello.com/1/boards/'.$request->id.'?name='.$request->name.'&desc='.$request->description.'&key='.$request->key.'&token='.$request->token);
         if($response)
         {
@@ -125,7 +125,44 @@ class TrelloController extends Controller
             $board = null;
         }
 
-        return view('trello.view-cards',compact('list','lists','board'));
+        return view('trello.view-cards',compact('list','lists','board','id'));
+    }
+
+    public function createList($id)
+    {
+        return view('trello.create-list',compact('id'));
+    }
+
+    public function storeList(Request $request)
+    {
+        $request->validate([
+            'name'        => 'required'
+        ]);
+        
+        $response = Http::post('https://api.trello.com/1/lists?name='.$request->name.'&idBoard='.$request->idBoard.'&key='.$request->key.'&token='.$request->token);
+        
+        return redirect()->route('view.board',$request->idBoard);
+
+    }
+
+    public function createCard($id)
+    {
+        return view('trello.create-card',compact('id'));
+    }
+
+    
+    public function storeCard(Request $request)
+    {
+        $request->validate([
+            'name'        => 'required',
+            'description' => 'required'
+        ]);
+
+        $response = Http::post('https://api.trello.com/1/cards?name='.$request->name.'&desc='.$request->description.'&idList='.$request->idList.'&key='.$request->key.'&token='.$request->token);
+
+        if ($response) {
+           return redirect()->route('view.card',$request->idList);
+        }
     }
 
 }

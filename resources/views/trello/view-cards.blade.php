@@ -2,12 +2,16 @@
 
 @section('content')
 <div class="container">
-  <div>
-    @if (isset($lists['name']))
-    <h3>List of cards (List Name: {{ $lists['name'] }} & Board Name: {{ $board['name'] }})</h3>
-    @endif
-    
-  </div>
+    <div class="row">
+        @if (isset($lists['name']))
+        <div class="col-md-10">
+            <h3>List of cards (List Name: {{ $lists['name'] }} & Board Name: {{ $board['name'] }})</h3>
+        </div>
+        @endif
+        <div class="col-md-2">
+            <a href="{{ route('create.card',$id) }}" class="btn btn-success">Create New Card</a>
+        </div>
+    </div>
     <div class="row mt-3">
         @forelse ($list as $item)
         <div class="col-sm-3 mb-3">
@@ -19,7 +23,7 @@
             </div>
         </div>
         @empty
-            <h4>No Cards found</h4>
+        <h4>No Cards found</h4>
         @endforelse
     </div>
 </div>

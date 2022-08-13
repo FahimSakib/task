@@ -30,6 +30,10 @@ Route::get('edit-board/{id}','TrelloController@editBoard')->name('edit.board');
 Route::put('update-board','TrelloController@updateBoard')->name('update.board');
 Route::get('view-board/{id}','TrelloController@viewBoard')->name('view.board');
 Route::get('view-card/{id}','TrelloController@viewCard')->name('view.card');
+Route::get('create-list/{id}','TrelloController@createList')->name('create.list');
+Route::post('list-store','TrelloController@storeList')->name('list.store');
+Route::get('create-card/{id}','TrelloController@createCard')->name('create.card');
+Route::post('card-store','TrelloController@storeCard')->name('card.store');
 
 
 

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div>
-        <h3>Create A new Board</h3>
+        <h3>Create A new Card</h3>
     </div>
-    <form method="POST" action="{{ route('board.store') }}">
+    <form method="POST" action="{{ route('card.store') }}">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
@@ -25,6 +25,7 @@
         </div>
         <input type="hidden" name="key" value="{{ Session::get('trello')['key'] }}">
         <input type="hidden" name="token" value="{{ Session::get('trello')['token'] }}">
+        <input type="hidden" name="idList" value="{{ $id }}">
         <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
 </div>

@@ -2,9 +2,14 @@
 
 @section('content')
 <div class="container">
-  <div>
-    <h3>Board List View (Board Name: {{ $board['name'] }})</h3>
-  </div>
+    <div class="row">
+        <div class="col-md-10">
+            <h3>Lists of a Board (Board Name: {{ $board['name'] }})</h3>
+        </div>
+        <div class="col-md-2">
+            <a href="{{ route('create.list',$board['id']) }}" class="btn btn-success">Create New list</a>
+        </div>
+    </div>
     <div class="row mt-3">
         @foreach ($lists as $item)
         <div class="col-sm-3 mb-3">
@@ -16,6 +21,8 @@
             </div>
         </div>
         @endforeach
+        @php
+    @endphp
     </div>
 </div>
 @endsection
