@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-  <div>
-    <a href="{{ route('create.board') }}" class="btn btn-success">Create Board</a>
-  </div>
+    <div>
+        <a href="{{ route('create.board') }}" class="btn btn-success">Create Board</a>
+    </div>
     <div class="row mt-3">
         @foreach ($boards as $item)
         <div class="col-sm-3 mb-3">

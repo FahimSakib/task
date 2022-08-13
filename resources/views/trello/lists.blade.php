@@ -22,7 +22,7 @@
         </div>
         @endforeach
         @php
-    @endphp
+        @endphp
     </div>
 </div>
 @endsection

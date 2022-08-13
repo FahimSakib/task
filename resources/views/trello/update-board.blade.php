@@ -15,8 +15,8 @@
         </div>
         <div class="form-group mt-3">
             <label for="description">Description</label>
-            <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                placeholder="Enter description" value="{{ $board['desc'] }}">
+            <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
+                name="description" placeholder="Enter description" value="{{ $board['desc'] }}">
             @error('description')
             <div class="alert alert-danger mt-1">{{ $message }}</div>
             @enderror
