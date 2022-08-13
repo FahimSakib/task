@@ -79,7 +79,6 @@ class TrelloController extends Controller
     public function updateBoard(Request $request)
     {
         $response = Http::put('https://api.trello.com/1/boards/'.$request->id.'?name='.$request->name.'&desc='.$request->description.'&key='.$request->key.'&token='.$request->token);
-        // dd('https://api.trello.com/1/boards/'.$request->id.'?name='.$request->name.'&desc='.$request->description.'&key='.$request->key.'&token='.$request->token);
         if($response)
         {
             $response = Http::get('https://api.trello.com/1/members/me/boards?key='.$request->key.'&token='.$request->token)->collect();
